@@ -1,0 +1,56 @@
+{
+  "name": "alexa-adapter",
+  "display_name": "Alexa",
+  "version": "0.1.0",
+  "description": "Control your devices with alexa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tim-hellhake/alexa-adapter.git"
+  },
+  "author": "Tim Hellhake",
+  "license": "MPL-2.0",
+  "bugs": {
+    "url": "https://github.com/tim-hellhake/alexa-adapter/issues"
+  },
+  "homepage": "https://github.com/tim-hellhake/alexa-adapter#readme",
+  "files": [
+    "LICENSE",
+    "SHA256SUMS",
+    "index.js",
+    "alexa-adapter.js"
+  ],
+  "moziot": {
+    "api": {
+      "min": 2,
+      "max": 2
+    },
+    "plugin": true,
+    "exec": "{nodeLoader} {path}",
+    "schema": {
+      "type": "object",
+      "required": [
+        "token"
+      ],
+      "properties": {
+        "token": {
+          "type": "string",
+          "title": "The access token"
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "hue-bridge-emulator": "^0.0.6",
+    "node-fetch": "^2.6.0",
+    "webthings-client": "0.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^5.16.0"
+  }
+}
