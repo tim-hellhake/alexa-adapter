@@ -1,7 +1,7 @@
 {
   "name": "alexa-adapter",
   "display_name": "Alexa",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Control your devices with alexa",
   "main": "index.js",
   "scripts": {

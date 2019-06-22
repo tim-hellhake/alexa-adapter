@@ -8,6 +8,14 @@
 
 Control your devices with alexa.
 
+## How does it work?
+The adapter emulates a philips hue bridge.
+
+Your echo device will directly talk to the gateway.
+
+Therefore no alexa skill is required and the gateway does not need to be exposed to the internet.
+
+## How to use it
 > Alexa, turn `foo` on
 
 > Alexa, turn `foo` off
