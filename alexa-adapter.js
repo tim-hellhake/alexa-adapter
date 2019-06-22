@@ -31,23 +31,52 @@ class AlexaDevice extends Device {
 
     const webThingsClient = new WebThingsClient('localhost', 8080, token);
 
+    const findOnOffProperty = (properties) => {
+      let fallBack;
+
+      for (const propertyName in properties) {
+        const property = properties[propertyName];
+
+        if (property.type === 'boolean') {
+          fallBack = {
+            propertyName,
+            property
+          };
+        }
+
+        // eslint-disable-next-line max-len
+        if (property['@type'] && property['@type'].indexOf('OnOffProperty') !== -1) {
+          return {
+            propertyName,
+            property
+          };
+        }
+      }
+
+      return fallBack;
+    };
+
     (async () => {
       const devices = await webThingsClient.getDevices();
 
       for (const device of devices) {
-        for (const propertyName in device.properties) {
+        const result = findOnOffProperty(device.properties);
+
+        if (result) {
+          const {
+            propertyName,
+            property
+          } = result;
+
           try {
-            const property = device.properties[propertyName];
-            if (property.type === 'boolean') {
-              console.log(`Adding ${device.name}`);
-              const onChange = (key, value) => {
-                if (key === 'on') {
-                  console.log(`${device.name} ${propertyName} => ${value}`);
-                  webThingsClient.setProperty(property, propertyName, value);
-                }
-              };
-              hueBridgeEmulator.addLight(`${device.name}`, onChange);
-            }
+            console.log(`Adding ${device.name}`);
+            const onChange = (key, value) => {
+              if (key === 'on') {
+                console.log(`${device.name} ${propertyName} => ${value}`);
+                webThingsClient.setProperty(property, propertyName, value);
+              }
+            };
+            hueBridgeEmulator.addLight(`${device.name}`, onChange);
           } catch (err) {
             console.error(err);
           }
