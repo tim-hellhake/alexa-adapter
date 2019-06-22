@@ -1,8 +1,8 @@
 {
   "name": "alexa-adapter",
   "display_name": "Alexa",
-  "version": "0.1.2",
-  "description": "Control your devices with alexa",
+  "version": "0.1.3",
+  "description": "Control your devices with alexa (currently only works with boolean properties)",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
