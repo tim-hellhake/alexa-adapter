@@ -46,7 +46,7 @@
   },
   "dependencies": {
     "hue-bridge-emulator": "^0.0.6",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "webthings-client": "0.0.1"
   },
   "devDependencies": {
